@@ -23,14 +23,15 @@ public:
 	{
 		//declaring an reference to an Object of NODE class using the variable temp.
 		NODE *temp = new NODE();
-		//Assigning a value to Data with
+		//Assigning a value to the Null value of data using the pointer
 		temp->Data = Data;
-
+		//check to see if the list is empty.  If the list is empty assign head and tail to the value of temp
 		if(Head==NULL)
 		{
 			Head = temp;
 			Tail = temp;
 		}
+		//If the list is not Empty point the value of tail to temp; then point the value of previous to tail;  Last assign the current value of temp too tail;
 		else
 		{
 			Tail->next = temp;
