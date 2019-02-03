@@ -21,27 +21,37 @@ public:
 	//Insert function uses a pointer to the NODE object and Insert()Method contains the type of data being passed into the list
 	NODE * Insert(Type Data)
 	{
-		//declaring an reference to an Object of NODE class using the variable temp.
-		NODE *temp = new NODE();
+		//declaring an reference to an Object of NODE class using the variable current.
+		NODE *current = new NODE();
 		//Assigning a value to the Null value of data using the pointer
-		temp->Data = Data;
-		//check to see if the list is empty.  If the list is empty assign head and tail to the value of temp
+		current->Data = Data;
+		//check to see if the list is empty.  If the list is empty assign head and tail to the value of current
 		if(Head==NULL)
 		{
-			Head = temp;
-			Tail = temp;
+			Head = current;
+			Tail = current;
 		}
-		//If the list is not Empty point the value of tail to temp; then point the value of previous to tail;  Last assign the current value of temp too tail;
+		//If the list is not Empty point the value of tail to current; then point the value of previous to tail;  Last assign the current value of current too tail;
 		else
 		{
-			Tail->next = temp;
-			temp->previous = Tail;
-			Tail = temp;
-		}
-			
+			Tail->next = current;
+			current->previous = Tail;
+			Tail = current;
+		}	
 		
-		return temp;
+		return current;
 	}
+	void display(){
+		NODE* pointer;
+		pointer = Head;
+		while(pointer!=nullptr)
+		{
+			std::cout<<pointer->data<<" ";
+			pointer = pointer->next;
+		}
+	}
+	
+
 private:
 	
 	struct NODE
