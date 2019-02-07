@@ -28,8 +28,8 @@ public:
 		//check to see if the list is empty.  If the list is empty assign head and tail to the value of current
 		if(Head==NULL)
 		{
-			Head->next = current;
-			Tail->previous = current;
+			Head = current;
+			Tail = current;
 		}
 		//If the list is not Empty point the value of tail to current; then point the value of previous to tail;  Last assign the current value of current too tail;
 		else
@@ -43,15 +43,37 @@ public:
 	}
 	NODE * find(Type Value)
 	{
-		NODE * current = Value;
-		while (Value != NULL)
+		NODE * current = Head;
+		while (current != nullptr && current->Data != Value)
 		{
-			
+			current = current->next;
 		}
+		return current;
 	}
-	NODE * Delete_Node(Type value)
+	void Delete(Type value)
 	{
-		
+		NODE * Delete_Node = find(value);
+		if (Head == Delete_Node)
+		{
+			Delete_Node->next->previous = nullptr;
+			Head = Delete_Node->next;
+		}
+		else if (Tail == Delete_Node)
+		{
+			Delete_Node->previous->next = nullptr;
+			Tail = Delete_Node->previous;
+		}
+		else if (Tail == Delete_Node  && Head == Delete_Node)
+		{
+			Head = nullptr;
+			Tail = nullptr;
+		}
+		else
+		{
+			Delete_Node->next->previous = Delete_Node->previous;
+			Delete_Node->previous->next = Delete_Node->next;
+		}
+		delete Delete_Node;
 	}
 
 	void display(){
